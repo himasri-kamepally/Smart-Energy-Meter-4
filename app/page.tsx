@@ -139,138 +139,98 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className={`min-h-screen transition-colors ${theme === 'dark' ? 'bg-slate-950 text-white' : 'bg-white text-slate-900'}`}>
+    <div className={`min-h-screen transition-all duration-500 ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
       {/* Navigation */}
       <nav
-        className={`fixed top-0 w-full z-50 transition-colors ${theme === 'dark' ? 'bg-slate-950/80 border-slate-800' : 'bg-white/80 border-slate-200'} border-b backdrop-blur-sm`}
+        className={`fixed top-0 w-full z-50 transition-all ${theme === 'dark' ? 'bg-black/80 border-zinc-800' : 'bg-white/80 border-slate-200'} border-b backdrop-blur-md`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
+            <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 shadow-lg shadow-blue-500/20">
               <Zap className="w-6 h-6 text-white" />
             </div>
-            <span className="font-bold text-xl">Energy Meter</span>
+            <span className="font-extrabold text-2xl tracking-tight">Smart Meter</span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className={`p-2 rounded-lg transition ${theme === 'dark' ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-100 hover:bg-slate-200'}`}
+              className={`p-2.5 rounded-full transition-all ${theme === 'dark' ? 'bg-zinc-900 hover:bg-zinc-800 text-zinc-400' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}`}
             >
               {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
-            {isAuthenticated ? (
-              <Button asChild className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90">
-                <Link href="/dashboard">Dashboard</Link>
+            <div className="hidden sm:flex items-center gap-3">
+              <Button variant="ghost" asChild className="rounded-full px-6">
+                <Link href="/login">Login</Link>
               </Button>
-            ) : (
-              <>
-                <Button variant="ghost" asChild>
-                  <Link href="/login">Sign In</Link>
-                </Button>
-                <Button asChild className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90">
-                  <Link href="/login">Get Started</Link>
-                </Button>
-              </>
-            )}
+              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 shadow-lg shadow-blue-600/20">
+                <Link href="/login">Sign Up</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto text-center space-y-8">
-          <div className="space-y-4">
-            <h1 className="text-5xl sm:text-6xl font-bold leading-tight">
-              Monitor Your Energy,{' '}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+      <section className="pt-48 pb-32 px-6">
+        <div className="max-w-6xl mx-auto text-center space-y-12">
+          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            <h1 className="text-6xl sm:text-8xl md:text-9xl font-black leading-[0.9] tracking-tighter">
+              Monitor Your Energy<br />
+              <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
                 Reduce Your Bills
               </span>
             </h1>
             <p
-              className={`text-xl ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}
+              className={`max-w-2xl mx-auto text-xl md:text-2xl font-medium ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}
             >
-              Real-time smart energy monitoring with AI-powered insights to help you save money and reduce your carbon footprint.
+              The most advanced smart energy monitoring platform with AI insights to help you live efficiently.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {isAuthenticated ? (
-              <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 h-12 px-8">
-                <Link href="/dashboard">
-                  Open Dashboard
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Link>
-              </Button>
-            ) : (
-              <>
-                <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 h-12 px-8">
-                  <Link href="/login">
-                    Get Started Free
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className={`h-12 px-8 ${theme === 'dark' ? 'border-slate-700 hover:bg-slate-900' : 'border-slate-300 hover:bg-slate-50'}`}
-                >
-                  <Link href="#how-it-works">Learn More</Link>
-                </Button>
-              </>
-            )}
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-slate-700">
-            <div>
-              <p className="text-3xl font-bold text-blue-400">50K+</p>
-              <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>Active Users</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-cyan-400">$2M+</p>
-              <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>Savings Generated</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-blue-400">99.9%</p>
-              <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>Uptime</p>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200">
+            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white rounded-full h-14 px-10 text-lg font-bold shadow-xl shadow-blue-600/25 transition-transform hover:scale-105">
+              <Link href="/login">Sign Up Now</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className={`rounded-full h-14 px-10 text-lg font-bold border-2 transition-all hover:scale-105 ${theme === 'dark' ? 'border-zinc-800 hover:bg-zinc-900 text-white' : 'border-slate-200 hover:bg-slate-50 text-black'}`}
+            >
+              <Link href="/login">Login</Link>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className={`py-20 px-4 sm:px-6 lg:px-8 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Powerful Features</h2>
-            <p className={`text-lg ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-              Everything you need to monitor and optimize your energy usage
+      <section className={`py-32 px-6 ${theme === 'dark' ? 'bg-zinc-950' : 'bg-slate-50'}`}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight">Powerful Features</h2>
+            <p className={`text-xl font-medium ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
+              Everything you need to master your energy consumption.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, idx) => {
               const Icon = feature.icon
               return (
-                <Card
+                <div
                   key={idx}
-                  className={`border-0 transition-transform hover:scale-105 ${theme === 'dark' ? 'bg-slate-800 hover:bg-slate-750' : 'bg-white hover:shadow-lg'}`}
+                  className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-2 ${theme === 'dark' ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-white border-slate-100 hover:shadow-2xl hover:shadow-slate-200'}`}
                 >
-                  <CardHeader className="pb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                    <Icon className="w-7 h-7 text-blue-500" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
+                  <p className={`text-lg leading-relaxed ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
+                    {feature.description}
+                  </p>
+                </div>
               )
             })}
           </div>
@@ -278,28 +238,26 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">How It Works</h2>
-            <p className={`text-lg ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-              Get started in 4 simple steps
+      <section id="how-it-works" className="py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight">How It Works</h2>
+            <p className={`text-xl font-medium ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
+              Your journey to efficiency in 4 simple steps.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-12">
             {steps.map((step, idx) => (
-              <div key={idx} className="relative">
-                <div className={`text-5xl font-bold mb-4 ${theme === 'dark' ? 'text-slate-700' : 'text-slate-200'}`}>
+              <div key={idx} className="relative group">
+                <div className={`text-8xl font-black mb-6 opacity-10 transition-opacity group-hover:opacity-20 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
                   {step.number}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>{step.description}</p>
-
+                <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
+                <p className={`text-lg font-medium ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>{step.description}</p>
+                
                 {idx < steps.length - 1 && (
-                  <div
-                    className={`hidden md:block absolute top-8 -right-4 w-8 h-0.5 ${theme === 'dark' ? 'bg-slate-700' : 'bg-slate-300'}`}
-                  />
+                  <div className={`hidden lg:block absolute top-12 -right-6 w-12 h-px ${theme === 'dark' ? 'bg-zinc-800' : 'bg-slate-200'}`} />
                 )}
               </div>
             ))}
@@ -307,183 +265,26 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className={`py-20 px-4 sm:px-6 lg:px-8 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Loved by Users</h2>
-            <p className={`text-lg ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-              See what our customers have to say
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, idx) => (
-              <Card
-                key={idx}
-                className={`border-0 ${theme === 'dark' ? 'bg-slate-800' : 'bg-white'}`}
-              >
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-4xl">{testimonial.avatar}</span>
-                    <div>
-                      <p className="font-semibold">{testimonial.name}</p>
-                      <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                  <p className={theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}>
-                    "{testimonial.content}"
-                  </p>
-                  <div className="flex gap-1 mt-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400">
-                        ⭐
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Simple Pricing</h2>
-            <p className={`text-lg ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-              Choose the plan that&apos;s right for you
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {pricing.map((plan, idx) => (
-              <Card
-                key={idx}
-                className={`border-0 flex flex-col ${
-                  plan.highlighted
-                    ? `ring-2 ring-blue-500 ${theme === 'dark' ? 'bg-slate-800' : 'bg-white'}`
-                    : `${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'}`
-                }`}
-              >
-                <CardHeader>
-                  <CardTitle>{plan.name}</CardTitle>
-                  <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-                    {plan.description}
-                  </p>
-                </CardHeader>
-                <CardContent className="flex-1 flex flex-col">
-                  <div className="mb-6">
-                    <span className="text-3xl font-bold">{plan.price}</span>
-                    {plan.period && (
-                      <span className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
-                        {plan.period}
-                      </span>
-                    )}
-                  </div>
-
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((feature, fidx) => (
-                      <li key={fidx} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                        <span className={theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}>
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    asChild
-                    className={`w-full ${
-                      plan.highlighted
-                        ? 'bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90'
-                        : `${theme === 'dark' ? 'bg-slate-700 hover:bg-slate-600' : 'bg-slate-200 hover:bg-slate-300 text-slate-900'}`
-                    }`}
-                  >
-                    <Link href="/login">{plan.cta}</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className={`py-20 px-4 sm:px-6 lg:px-8 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
-        <div className="max-w-3xl mx-auto text-center space-y-8">
-          <h2 className="text-4xl font-bold">Ready to Save on Energy?</h2>
-          <p className={`text-lg ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-            Join thousands of users already monitoring their energy and reducing their bills.
-          </p>
-          <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 h-12 px-8">
-            <Link href="/login">
-              Get Started for Free
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
-          </Button>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer
-        className={`border-t ${theme === 'dark' ? 'border-slate-800 bg-slate-950' : 'border-slate-200 bg-white'} py-12 px-4 sm:px-6 lg:px-8`}
+        className={`py-20 px-6 border-t ${theme === 'dark' ? 'border-zinc-900 bg-black' : 'border-slate-100 bg-white'}`}
       >
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
-                  <Zap className="w-5 h-5 text-white" />
-                </div>
-                <span className="font-bold">Energy Meter</span>
-              </div>
-              <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-                Smart energy monitoring for a sustainable future.
-              </p>
+        <div className="max-w-7xl mx-auto text-center space-y-8">
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Zap className="w-6 h-6 text-blue-500" />
+              <span className="font-black text-xl tracking-tight uppercase">Smart Energy Meter</span>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Product</h4>
-              <ul className={`space-y-2 text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-                <li><a href="#" className="hover:text-blue-400 transition">Features</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition">Pricing</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition">Dashboard</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Company</h4>
-              <ul className={`space-y-2 text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-                <li><a href="#" className="hover:text-blue-400 transition">About</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition">Blog</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className={`space-y-2 text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-                <li><a href="#" className="hover:text-blue-400 transition">Privacy</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition">Terms</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className={`border-t ${theme === 'dark' ? 'border-slate-800' : 'border-slate-200'} pt-8 flex items-center justify-between`}>
-            <p className={`text-sm ${theme === 'dark' ? 'text-slate-500' : 'text-slate-600'}`}>
-              © 2024 Energy Meter. All rights reserved.
+            <p className={`text-lg font-bold tracking-widest uppercase ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}>
+              Efficient • Smart • Reliable
             </p>
-            <div className="flex gap-4">
-              <a href="#" className={`${theme === 'dark' ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'}`}>
-                Twitter
-              </a>
-              <a href="#" className={`${theme === 'dark' ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'}`}>
-                LinkedIn
-              </a>
-            </div>
           </div>
+          
+          <div className={`max-w-md mx-auto h-px ${theme === 'dark' ? 'bg-zinc-900' : 'bg-slate-100'}`} />
+          
+          <p className={`text-sm font-medium ${theme === 'dark' ? 'text-zinc-600' : 'text-slate-400'}`}>
+            Smart Energy Meter © 2026
+          </p>
         </div>
       </footer>
     </div>
