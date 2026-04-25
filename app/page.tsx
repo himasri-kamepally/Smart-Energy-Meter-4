@@ -139,95 +139,105 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className={`min-h-screen transition-all duration-500 ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    <div className={`min-h-screen transition-all duration-700 ${theme === 'dark' ? 'bg-[#000000] text-white' : 'bg-white text-black'}`}>
       {/* Navigation */}
       <nav
-        className={`fixed top-0 w-full z-50 transition-all ${theme === 'dark' ? 'bg-black/80 border-zinc-800' : 'bg-white/80 border-slate-200'} border-b backdrop-blur-md`}
+        className={`fixed top-0 w-full z-50 transition-all ${theme === 'dark' ? 'bg-[#000000]/70 border-zinc-900' : 'bg-white/70 border-slate-100'} border-b backdrop-blur-xl`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 shadow-lg shadow-blue-500/20">
-              <Zap className="w-6 h-6 text-white" />
-            </div>
-            <span className="font-extrabold text-2xl tracking-tight">Smart Meter</span>
+        <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <Zap className="w-6 h-6 text-blue-500 fill-blue-500/10" />
+            <span className="font-bold text-lg tracking-tight">Smart Meter</span>
           </div>
 
           <div className="flex items-center gap-6">
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className={`p-2.5 rounded-full transition-all ${theme === 'dark' ? 'bg-zinc-900 hover:bg-zinc-800 text-zinc-400' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}`}
+              className={`transition-colors ${theme === 'dark' ? 'text-zinc-500 hover:text-white' : 'text-slate-400 hover:text-black'}`}
             >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            <div className="hidden sm:flex items-center gap-3">
-              <Button variant="ghost" asChild className="rounded-full px-6">
-                <Link href="/login">Login</Link>
-              </Button>
-              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 shadow-lg shadow-blue-600/20">
-                <Link href="/login">Sign Up</Link>
-              </Button>
+            <div className="flex items-center gap-4">
+              <Link href="/login" className="text-sm font-medium hover:opacity-70 transition-opacity">Login</Link>
+              <Link 
+                href="/login" 
+                className={`text-sm font-semibold px-5 py-2 rounded-xl transition-all ${
+                  theme === 'dark' 
+                    ? 'bg-white text-black hover:bg-zinc-200' 
+                    : 'bg-black text-white hover:bg-zinc-800'
+                }`}
+              >
+                Sign Up
+              </Link>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-48 pb-32 px-6">
-        <div className="max-w-6xl mx-auto text-center space-y-12">
-          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            <h1 className="text-6xl sm:text-8xl md:text-9xl font-black leading-[0.9] tracking-tighter">
+      <section className="pt-40 pb-32 px-6">
+        <div className="max-w-4xl mx-auto text-center space-y-10">
+          <div className="space-y-6 animate-in fade-in duration-1000 slide-in-from-bottom-4">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.1]">
               Monitor Your Energy<br />
-              <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
+              <span className={theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'}>
                 Reduce Your Bills
               </span>
             </h1>
             <p
-              className={`max-w-2xl mx-auto text-xl md:text-2xl font-medium ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}
+              className={`max-w-xl mx-auto text-lg md:text-xl font-medium leading-relaxed ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}
             >
-              The most advanced smart energy monitoring platform with AI insights to help you live efficiently.
+              Smart monitoring and AI insights to help you save energy, reduce waste, and lower monthly bills.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200">
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white rounded-full h-14 px-10 text-lg font-bold shadow-xl shadow-blue-600/25 transition-transform hover:scale-105">
-              <Link href="/login">Sign Up Now</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className={`rounded-full h-14 px-10 text-lg font-bold border-2 transition-all hover:scale-105 ${theme === 'dark' ? 'border-zinc-800 hover:bg-zinc-900 text-white' : 'border-slate-200 hover:bg-slate-50 text-black'}`}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-in fade-in duration-1000 slide-in-from-bottom-6 delay-200">
+            <Link 
+              href="/login" 
+              className={`h-12 px-8 rounded-xl font-semibold flex items-center transition-all hover:scale-[1.02] active:scale-[0.98] ${
+                theme === 'dark' ? 'bg-white text-black' : 'bg-black text-white'
+              }`}
             >
-              <Link href="/login">Login</Link>
-            </Button>
+              Sign Up
+            </Link>
+            <Link
+              href="/login"
+              className={`h-12 px-8 rounded-xl font-semibold flex items-center border transition-all hover:bg-zinc-500/5 ${
+                theme === 'dark' ? 'border-zinc-800 text-white' : 'border-slate-200 text-black'
+              }`}
+            >
+              Login
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className={`py-32 px-6 ${theme === 'dark' ? 'bg-zinc-950' : 'bg-slate-50'}`}>
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight">Powerful Features</h2>
-            <p className={`text-xl font-medium ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
+      <section className={`py-32 px-6 ${theme === 'dark' ? 'bg-[#0a0a0a]' : 'bg-[#fbfbfb]'}`}>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20 space-y-3">
+            <h2 className="text-3xl font-bold tracking-tight">Powerful Features</h2>
+            <p className={`text-lg ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
               Everything you need to master your energy consumption.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, idx) => {
               const Icon = feature.icon
               return (
                 <div
                   key={idx}
-                  className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-2 ${theme === 'dark' ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-white border-slate-100 hover:shadow-2xl hover:shadow-slate-200'}`}
+                  className={`p-8 rounded-2xl border transition-all duration-300 hover:shadow-sm ${
+                    theme === 'dark' 
+                      ? 'bg-[#111111] border-zinc-900 text-white' 
+                      : 'bg-white border-slate-100 text-black'
+                  }`}
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                    <Icon className="w-7 h-7 text-blue-500" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
-                  <p className={`text-lg leading-relaxed ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
+                  <Icon className="w-6 h-6 text-blue-500 mb-6" />
+                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className={`text-base leading-relaxed ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
                     {feature.description}
                   </p>
                 </div>
@@ -239,26 +249,22 @@ export default function LandingPage() {
 
       {/* How It Works */}
       <section id="how-it-works" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight">How It Works</h2>
-            <p className={`text-xl font-medium ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
-              Your journey to efficiency in 4 simple steps.
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20 space-y-3">
+            <h2 className="text-3xl font-bold tracking-tight">How It Works</h2>
+            <p className={`text-lg ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
+              Simple integration, immediate results.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-12">
+          <div className="grid md:grid-cols-4 gap-8">
             {steps.map((step, idx) => (
-              <div key={idx} className="relative group">
-                <div className={`text-8xl font-black mb-6 opacity-10 transition-opacity group-hover:opacity-20 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-                  {step.number}
+              <div key={idx} className="space-y-4">
+                <div className={`text-sm font-bold tracking-widest uppercase ${theme === 'dark' ? 'text-blue-500' : 'text-blue-600'}`}>
+                  Step {step.number}
                 </div>
-                <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                <p className={`text-lg font-medium ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>{step.description}</p>
-                
-                {idx < steps.length - 1 && (
-                  <div className={`hidden lg:block absolute top-12 -right-6 w-12 h-px ${theme === 'dark' ? 'bg-zinc-800' : 'bg-slate-200'}`} />
-                )}
+                <h3 className="text-xl font-bold">{step.title}</h3>
+                <p className={`text-base ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>{step.description}</p>
               </div>
             ))}
           </div>
@@ -267,23 +273,14 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer
-        className={`py-20 px-6 border-t ${theme === 'dark' ? 'border-zinc-900 bg-black' : 'border-slate-100 bg-white'}`}
+        className={`py-20 px-6 border-t ${theme === 'dark' ? 'border-zinc-900 bg-[#000000]' : 'border-slate-100 bg-white'}`}
       >
-        <div className="max-w-7xl mx-auto text-center space-y-8">
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Zap className="w-6 h-6 text-blue-500" />
-              <span className="font-black text-xl tracking-tight uppercase">Smart Energy Meter</span>
-            </div>
-            <p className={`text-lg font-bold tracking-widest uppercase ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}>
-              Efficient • Smart • Reliable
-            </p>
-          </div>
-          
-          <div className={`max-w-md mx-auto h-px ${theme === 'dark' ? 'bg-zinc-900' : 'bg-slate-100'}`} />
-          
-          <p className={`text-sm font-medium ${theme === 'dark' ? 'text-zinc-600' : 'text-slate-400'}`}>
+        <div className="max-w-6xl mx-auto text-center space-y-6">
+          <p className={`text-sm font-medium tracking-wide ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}>
             Smart Energy Meter © 2026
+          </p>
+          <p className={`text-xs font-medium tracking-[0.2em] uppercase opacity-40 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+            Efficient • Smart • Reliable
           </p>
         </div>
       </footer>
