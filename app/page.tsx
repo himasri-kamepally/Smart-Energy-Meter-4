@@ -139,15 +139,22 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className={`min-h-screen transition-all duration-700 ${theme === 'dark' ? 'bg-[#000000] text-white' : 'bg-white text-black'}`}>
+    <div className={`min-h-screen transition-all duration-700 ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
+      {/* Background Decor */}
+      {theme === 'dark' && (
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-zinc-900/20 blur-[120px] rounded-full" />
+        </div>
+      )}
+
       {/* Navigation */}
       <nav
-        className={`fixed top-0 w-full z-50 transition-all ${theme === 'dark' ? 'bg-[#000000]/70 border-zinc-900' : 'bg-white/70 border-slate-100'} border-b backdrop-blur-xl`}
+        className={`fixed top-0 w-full z-50 transition-all ${theme === 'dark' ? 'bg-black/70 border-zinc-900' : 'bg-white/70 border-slate-100'} border-b backdrop-blur-xl`}
       >
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <Zap className="w-6 h-6 text-blue-500 fill-blue-500/10" />
-            <span className="font-bold text-lg tracking-tight">Smart Meter</span>
+            <Zap className="w-5 h-5 text-blue-500 fill-blue-500/10" />
+            <span className="font-bold text-base tracking-tight">Smart Meter</span>
           </div>
 
           <div className="flex items-center gap-6">
@@ -158,7 +165,7 @@ export default function LandingPage() {
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <Link href="/login" className="text-sm font-medium hover:opacity-70 transition-opacity">Login</Link>
               <Link 
                 href="/login" 
@@ -176,26 +183,26 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-40 pb-32 px-6">
-        <div className="max-w-4xl mx-auto text-center space-y-10">
+      <section className="relative pt-48 pb-32 px-6">
+        <div className="max-w-4xl mx-auto text-center space-y-12">
           <div className="space-y-6 animate-in fade-in duration-1000 slide-in-from-bottom-4">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.2]">
               Monitor Your Energy<br />
-              <span className={theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'}>
+              <span className={theme === 'dark' ? 'bg-gradient-to-r from-zinc-200 to-blue-400 bg-clip-text text-transparent' : 'text-blue-600'}>
                 Reduce Your Bills
               </span>
             </h1>
             <p
-              className={`max-w-xl mx-auto text-lg md:text-xl font-medium leading-relaxed ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}
+              className={`max-w-lg mx-auto text-sm md:text-base font-medium leading-relaxed ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}
             >
-              Smart monitoring and AI insights to help you save energy, reduce waste, and lower monthly bills.
+              Smart monitoring and AI insights to help reduce energy waste and monthly bills.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-in fade-in duration-1000 slide-in-from-bottom-6 delay-200">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-in fade-in duration-1000 slide-in-from-bottom-6 delay-200">
             <Link 
               href="/login" 
-              className={`h-12 px-8 rounded-xl font-semibold flex items-center transition-all hover:scale-[1.02] active:scale-[0.98] ${
+              className={`h-11 px-8 rounded-xl font-semibold flex items-center transition-all hover:scale-[1.02] active:scale-[0.98] ${
                 theme === 'dark' ? 'bg-white text-black' : 'bg-black text-white'
               }`}
             >
@@ -203,7 +210,7 @@ export default function LandingPage() {
             </Link>
             <Link
               href="/login"
-              className={`h-12 px-8 rounded-xl font-semibold flex items-center border transition-all hover:bg-zinc-500/5 ${
+              className={`h-11 px-8 rounded-xl font-semibold flex items-center border transition-all hover:bg-zinc-500/5 ${
                 theme === 'dark' ? 'border-zinc-800 text-white' : 'border-slate-200 text-black'
               }`}
             >
