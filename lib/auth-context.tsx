@@ -133,7 +133,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     await supabase.auth.signOut()
     setUser(null)
-    router.push('/login')
+    router.push('/')
   }
 
   const updateProfile = async (name: string, dailyLimit?: number) => {
