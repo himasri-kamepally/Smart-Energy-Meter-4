@@ -33,6 +33,15 @@ export default function LandingPage() {
     }
   }, [isAuthenticated, isLoading, router])
 
+  // Don't render anything while checking auth or if authenticated to prevent "flicker"
+  if (isLoading || isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <Zap className="w-8 h-8 text-blue-500 animate-pulse" />
+      </div>
+    )
+  }
+
   const features = [
     {
       icon: TrendingDown,
