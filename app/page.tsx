@@ -17,11 +17,21 @@ import {
   Sun,
 } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { useAuth } from '@/lib/auth-context'
 
 export default function LandingPage() {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, isLoading } = useAuth()
+  const router = useRouter()
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+
+  // Auto-redirect if already logged in
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.push('/dashboard')
+    }
+  }, [isAuthenticated, isLoading, router])
 
   const features = [
     {
